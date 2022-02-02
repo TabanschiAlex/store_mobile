@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:project_cartridje_mobile/theme.dart';
-
+import 'package:project_cartridje_mobile/routes.dart';
+import 'package:project_cartridje_mobile/screens/welcome/welcome_screen.dart';
+import 'package:project_cartridje_mobile/theme/theme.dart';
 
 void main() {
   runApp(const App());
@@ -12,10 +13,10 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Cartridje',
+      title: 'Store',
       theme: theme(),
-      home: const Text('Hello world'),
+      initialRoute: WelcomeScreen.routeName,
+      routes: routes,
     );
   }
-
 }
