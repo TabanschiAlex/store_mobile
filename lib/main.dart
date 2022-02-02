@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project_cartridje_mobile/theme.dart';
+
 
 void main() {
   runApp(const App());
@@ -9,9 +11,10 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Cartridje',
-
+      theme: theme(),
+      home: const Text('Hello world'),
     );
   }
 
