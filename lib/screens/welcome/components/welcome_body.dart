@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
+import 'package:project_cartridje_mobile/components/default_button.dart';
 import 'package:project_cartridje_mobile/config/colors_config.dart';
 import 'package:project_cartridje_mobile/config/durations_config.dart';
 import 'package:project_cartridje_mobile/config/size_config.dart';
+import 'package:project_cartridje_mobile/screens/sign_in/sign_in_screen.dart';
 import 'package:project_cartridje_mobile/screens/welcome/components/welcome_content.dart';
 
 class WelcomeBody extends StatefulWidget {
@@ -20,7 +22,7 @@ class WelcomeBodyState extends State<WelcomeBody> {
       "image": "assets/images/welcome_screen/welcome_1.png"
     },
     {
-      "text": "We help people conect with store \naround United State of America",
+      "text": "We help people conect with store \naround World",
       "image": "assets/images/welcome_screen/welcome_2.png"
     },
     {
@@ -67,12 +69,12 @@ class WelcomeBodyState extends State<WelcomeBody> {
                       ),
                     ),
                     const Spacer(flex: 3),
-                    /*DefaultButton(
+                    DefaultButton(
                       text: "Continue",
                       press: () {
                         Navigator.pushNamed(context, SignInScreen.routeName);
                       },
-                    ),*/
+                    ),
                     const Spacer(),
                   ],
                 ),
