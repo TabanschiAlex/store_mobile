@@ -5,6 +5,7 @@ import 'package:project_cartridje_mobile/config/errors_config.dart';
 import 'package:project_cartridje_mobile/config/size_config.dart';
 import 'package:project_cartridje_mobile/helper/keyboard.dart';
 import 'package:project_cartridje_mobile/screens/forgot_password/forgot_password_screen.dart';
+import 'package:project_cartridje_mobile/screens/login_success/login_success_screen.dart';
 
 import '../../../components/default_button.dart';
 
@@ -68,7 +69,7 @@ class _SignFormState extends State<SignForm> {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 KeyboardUtil.hideKeyboard(context);
-                // Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+                Navigator.pushNamed(context, LoginSuccessScreen.routeName);
               }
             },
           ),
