@@ -21,6 +21,8 @@ class Product {
   });
 }
 
+
+
 // Our demo Products
 
 List<Product> demoProducts = [

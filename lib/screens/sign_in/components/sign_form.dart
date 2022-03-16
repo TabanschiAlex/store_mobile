@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_cartridje_mobile/api/components/product.dart';
 import 'package:project_cartridje_mobile/components/custom_suffix_icon.dart';
 import 'package:project_cartridje_mobile/components/form_error.dart';
 import 'package:project_cartridje_mobile/config/errors_config.dart';
@@ -65,7 +66,9 @@ class _SignFormState extends State<SignForm> {
           SizedBox(height: getProportionateScreenHeight(20)),
           DefaultButton(
             text: "Continue",
-            press: () {
+            press: () async {
+              final response = await Product().getProducts();
+              print(response.body);
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 KeyboardUtil.hideKeyboard(context);

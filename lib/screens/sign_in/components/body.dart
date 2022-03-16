@@ -34,8 +34,8 @@ class Body extends StatelessWidget {
                 ),
                 SizedBox(height: SizeConfig.screenHeight * 0.08),
                 const SignForm(),
-                SizedBox(height: SizeConfig.screenHeight * 0.08),
-                Row(
+                SizedBox(height: SizeConfig.screenHeight * 0.04),
+                /*Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SocialCard(
@@ -52,7 +52,7 @@ class Body extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: getProportionateScreenHeight(20)),
+                SizedBox(height: getProportionateScreenHeight(20)),*/
                 const NoAccountActions(),
               ],
             ),
