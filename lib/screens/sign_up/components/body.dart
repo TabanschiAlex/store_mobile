@@ -19,16 +19,16 @@ class Body extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: SizeConfig.screenHeight * 0.04), // 4%
+                SizedBox(height: SizeConfig.screenHeight * 0.04),
                 Text("Register Account", style: headingStyle),
                 const Text(
                   "Complete your details or continue \nwith social media",
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: SizeConfig.screenHeight * 0.08),
-                SignUpForm(),
+                const SignUpForm(),
                 SizedBox(height: SizeConfig.screenHeight * 0.08),
-                Row(
+                /*Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SocialCard(
@@ -45,7 +45,7 @@ class Body extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: getProportionateScreenHeight(20)),
+                SizedBox(height: getProportionateScreenHeight(20)),*/
                 Text(
                   'By continuing your confirm that you agree \nwith our Term and Condition',
                   textAlign: TextAlign.center,

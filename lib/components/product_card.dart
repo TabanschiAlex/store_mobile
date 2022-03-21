@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:project_cartridje_mobile/config/colors_config.dart';
 import 'package:project_cartridje_mobile/config/size_config.dart';
 import 'package:project_cartridje_mobile/models/product.dart';
+import 'package:project_cartridje_mobile/screens/details/details_screen.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({
@@ -22,11 +23,11 @@ class ProductCard extends StatelessWidget {
       child: SizedBox(
         width: getProportionateScreenWidth(width),
         child: GestureDetector(
-          /*onTap: () => Navigator.pushNamed(
+          onTap: () => Navigator.pushNamed(
             context,
             DetailsScreen.routeName,
             arguments: ProductDetailsArguments(product: product),
-          ),*/
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

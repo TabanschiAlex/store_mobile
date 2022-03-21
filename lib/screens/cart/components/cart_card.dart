@@ -3,7 +3,6 @@ import 'package:project_cartridje_mobile/config/colors_config.dart';
 import 'package:project_cartridje_mobile/config/size_config.dart';
 import 'package:project_cartridje_mobile/models/cart.dart';
 
-
 class CartCard extends StatelessWidget {
   const CartCard({
     Key? key,

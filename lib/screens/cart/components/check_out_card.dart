@@ -36,9 +36,9 @@ class CheckoutCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
+            /*Row(
               children: [
-                Container(
+                *//*Container(
                   padding: const EdgeInsets.all(10),
                   height: getProportionateScreenWidth(40),
                   width: getProportionateScreenWidth(40),
@@ -47,7 +47,7 @@ class CheckoutCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: SvgPicture.asset("assets/icons/receipt.svg"),
-                ),
+                ),*//*
                 const Spacer(),
                 const Text("Add voucher code"),
                 const SizedBox(width: 10),
@@ -57,7 +57,7 @@ class CheckoutCard extends StatelessWidget {
                   color: textColor,
                 )
               ],
-            ),
+            ),*/
             SizedBox(height: getProportionateScreenHeight(20)),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -67,7 +67,7 @@ class CheckoutCard extends StatelessWidget {
                     text: "Total:\n",
                     children: [
                       TextSpan(
-                        text: "\$337.15",
+                        text: "\$200.68",
                         style: TextStyle(fontSize: 16, color: Colors.black),
                       ),
                     ],

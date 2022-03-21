@@ -67,8 +67,6 @@ class _SignFormState extends State<SignForm> {
           DefaultButton(
             text: "Continue",
             press: () async {
-              final response = await Product().getProducts();
-              print(response.body);
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 KeyboardUtil.hideKeyboard(context);

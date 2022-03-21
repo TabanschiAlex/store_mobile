@@ -16,6 +16,7 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      padding: EdgeInsets.only(top: getProportionateScreenWidth(20)),
       children: [
         ProductImages(product: product),
         TopRoundedContainer(
@@ -26,11 +27,24 @@ class Body extends StatelessWidget {
                 product: product,
                 pressOnSeeMore: () {},
               ),
-              TopRoundedContainer(
+              Padding(
+                padding: EdgeInsets.only(
+                  left: SizeConfig.screenWidth * 0.15,
+                  right: SizeConfig.screenWidth * 0.15,
+                  bottom: getProportionateScreenWidth(40),
+                  top: getProportionateScreenWidth(15),
+                ),
+                child: DefaultButton(
+                  text: "Add To Cart",
+                  press: () {},
+                ),
+              ),
+
+              /*TopRoundedContainer(
                 color: const Color(0xFFF6F7F9),
                 child: Column(
                   children: [
-                    ColorDots(product: product),
+                    // ColorDots(product: product),
                     TopRoundedContainer(
                       color: Colors.white,
                       child: Padding(
@@ -48,7 +62,7 @@ class Body extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
+              ),*/
             ],
           ),
         ),

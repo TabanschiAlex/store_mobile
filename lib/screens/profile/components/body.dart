@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_cartridje_mobile/screens/sign_in/sign_in_screen.dart';
 
 import 'profile_menu.dart';
 import 'profile_pic.dart';
@@ -37,7 +38,9 @@ class Body extends StatelessWidget {
           ProfileMenu(
             text: "Log Out",
             icon: "assets/icons/Logout.svg",
-            press: () {},
+            press: () {
+              Navigator.pushNamed(context, SignInScreen.routeName);
+            },
           ),
         ],
       ),

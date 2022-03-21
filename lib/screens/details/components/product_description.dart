@@ -41,7 +41,7 @@ class ProductDescription extends StatelessWidget {
               ),
             ),
             child: SvgPicture.asset(
-              "assets/icons/Heart Icon_2.svg",
+              "assets/icons/heart_icon_2.svg",
               color:
                   product.isFavourite ? const Color(0xFFFF4848) : const Color(0xFFDBDEE4),
               height: getProportionateScreenWidth(16),
