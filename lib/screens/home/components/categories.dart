@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:project_cartridje_mobile/config/size_config.dart';
 
-
 class Categories extends StatelessWidget {
   const Categories({Key? key}) : super(key: key);
 
@@ -25,7 +24,7 @@ class Categories extends StatelessWidget {
           (index) => CategoryCard(
             icon: categories[index]["icon"],
             text: categories[index]["text"],
-            press: () {  },
+            press: () {},
           ),
         ),
       ),

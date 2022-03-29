@@ -17,13 +17,13 @@ class Body extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: getProportionateScreenHeight(20)),
-            const HomeHeader(),
+            HomeHeader(),
             SizedBox(height: getProportionateScreenWidth(10)),
             const DiscountBanner(),
             // const Categories(),
             // const SpecialOffers(),
             SizedBox(height: getProportionateScreenWidth(30)),
-            const PopularProducts(),
+            PopularProducts(),
             SizedBox(height: getProportionateScreenWidth(30)),
           ],
         ),

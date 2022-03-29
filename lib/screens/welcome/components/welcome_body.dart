@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:project_cartridje_mobile/components/default_button.dart';
 import 'package:project_cartridje_mobile/config/colors_config.dart';
 import 'package:project_cartridje_mobile/config/durations_config.dart';
 import 'package:project_cartridje_mobile/config/size_config.dart';
+import 'package:project_cartridje_mobile/controllers/firebase_auth_controller.dart';
+import 'package:project_cartridje_mobile/screens/home/home_screen.dart';
 import 'package:project_cartridje_mobile/screens/sign_in/sign_in_screen.dart';
 import 'package:project_cartridje_mobile/screens/welcome/components/welcome_content.dart';
 
@@ -30,6 +34,9 @@ class WelcomeBodyState extends State<WelcomeBody> {
       "image": "assets/images/welcome_screen/welcome_3.png"
     },
   ];
+
+  final FirebaseAuthController _firebaseAuthController =
+      Get.put(FirebaseAuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -65,14 +72,19 @@ class WelcomeBodyState extends State<WelcomeBody> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: List.generate(
                         welcomeData.length,
-                            (index) => buildDot(index: index),
+                        (index) => buildDot(index: index),
                       ),
                     ),
                     const Spacer(flex: 3),
                     DefaultButton(
                       text: "Continue",
                       press: () {
-                        Navigator.pushNamed(context, SignInScreen.routeName);
+                        _firebaseAuthController.user.value != null
+                            ? Navigator.pushReplacementNamed(
+                                context, HomeScreen.routeName)
+                            : Navigator.pushReplacementNamed(
+                                context, SignInScreen.routeName);
+                        //Navigator.pushNamed(context, SignInScreen.routeName);
                       },
                     ),
                     const Spacer(),

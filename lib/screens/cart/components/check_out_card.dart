@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:project_cartridje_mobile/components/default_button.dart';
 import 'package:project_cartridje_mobile/config/colors_config.dart';
 import 'package:project_cartridje_mobile/config/size_config.dart';
+import 'package:project_cartridje_mobile/controllers/client_controller.dart';
 
 class CheckoutCard extends StatelessWidget {
   const CheckoutCard({
@@ -16,7 +18,6 @@ class CheckoutCard extends StatelessWidget {
         vertical: getProportionateScreenWidth(15),
         horizontal: getProportionateScreenWidth(30),
       ),
-      // height: 174,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: const BorderRadius.only(
@@ -36,9 +37,9 @@ class CheckoutCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /*Row(
+            Row(
               children: [
-                *//*Container(
+                Container(
                   padding: const EdgeInsets.all(10),
                   height: getProportionateScreenWidth(40),
                   width: getProportionateScreenWidth(40),
@@ -47,9 +48,9 @@ class CheckoutCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: SvgPicture.asset("assets/icons/receipt.svg"),
-                ),*//*
+                ),
                 const Spacer(),
-                const Text("Add voucher code"),
+                const Text("CT_add_code"),
                 const SizedBox(width: 10),
                 const Icon(
                   Icons.arrow_forward_ios,
@@ -57,26 +58,31 @@ class CheckoutCard extends StatelessWidget {
                   color: textColor,
                 )
               ],
-            ),*/
+            ),
             SizedBox(height: getProportionateScreenHeight(20)),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text.rich(
-                  TextSpan(
-                    text: "Total:\n",
-                    children: [
+                GetBuilder<ClientController>(
+                  builder: ((_clientController) {
+                    return Text.rich(
                       TextSpan(
-                        text: "\$200.68",
-                        style: TextStyle(fontSize: 16, color: Colors.black),
+                        text: "Total:\n",
+                        children: [
+                          TextSpan(
+                            text: "\$${_clientController.cartCount}",
+                            style: const TextStyle(
+                                fontSize: 16, color: Colors.black),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    );
+                  }),
                 ),
                 SizedBox(
                   width: getProportionateScreenWidth(190),
                   child: DefaultButton(
-                    text: "Check Out",
+                    text: "Checkout",
                     press: () {},
                   ),
                 ),

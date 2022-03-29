@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:project_cartridje_mobile/config/colors_config.dart';
 import 'package:project_cartridje_mobile/enums/menu_state_enum.dart';
+import 'package:project_cartridje_mobile/screens/favourites/favourites_screen.dart';
 import 'package:project_cartridje_mobile/screens/home/home_screen.dart';
 import 'package:project_cartridje_mobile/screens/profile/profile_screen.dart';
 
@@ -49,7 +50,8 @@ class CustomBottomNavBar extends StatelessWidget {
               ),
               IconButton(
                 icon: SvgPicture.asset("assets/icons/heart_icon.svg"),
-                onPressed: () {},
+                onPressed: () =>
+                    Navigator.pushNamed(context, FavouritesScreen.routeName),
               ),
               IconButton(
                 icon: SvgPicture.asset("assets/icons/chat_bubble_icon.svg"),

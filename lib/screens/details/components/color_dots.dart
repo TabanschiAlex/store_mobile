@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_cartridje_mobile/components/rounded_icon_btn.dart';
 import 'package:project_cartridje_mobile/config/colors_config.dart';
 import 'package:project_cartridje_mobile/config/size_config.dart';
+import 'package:project_cartridje_mobile/helper/color_from_string.dart';
 import 'package:project_cartridje_mobile/models/product.dart';
 
 class ColorDots extends StatelessWidget {
@@ -24,7 +25,7 @@ class ColorDots extends StatelessWidget {
           ...List.generate(
             product.colors.length,
             (index) => ColorDot(
-              color: product.colors[index],
+              color: ColorFromString.getColorFromString(product.colors[index]),
               isSelected: index == selectedColor,
             ),
           ),

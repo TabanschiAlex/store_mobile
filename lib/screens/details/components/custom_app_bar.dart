@@ -6,9 +6,7 @@ import 'package:project_cartridje_mobile/config/size_config.dart';
 class CustomAppBar extends StatelessWidget {
   final double rating;
 
-  CustomAppBar({required this.rating});
-
-  Size get preferredSize => Size.fromHeight(AppBar().preferredSize.height);
+  const CustomAppBar({Key? key, required this.rating}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

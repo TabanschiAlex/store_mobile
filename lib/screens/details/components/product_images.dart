@@ -18,6 +18,7 @@ class ProductImages extends StatefulWidget {
 
 class _ProductImagesState extends State<ProductImages> {
   int selectedImage = 0;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -27,7 +28,7 @@ class _ProductImagesState extends State<ProductImages> {
           child: AspectRatio(
             aspectRatio: 1,
             child: Hero(
-              tag: widget.product.id.toString(),
+              tag: widget.product.uuid.toString(),
               child: Image.asset(widget.product.images[selectedImage]),
             ),
           ),

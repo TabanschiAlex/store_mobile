@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:project_cartridje_mobile/models/product.dart';
 
 import 'components/body.dart';
-import 'components/custom_app_bar.dart';
 
 class DetailsScreen extends StatelessWidget {
   static String routeName = "/details";
@@ -16,7 +15,7 @@ class DetailsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F6F9),
       appBar: AppBar(
-          title: Text(agrs.product.title),
+        title: Text(agrs.product.title),
       ),
       body: Body(product: agrs.product),
     );
