@@ -1,4 +1,4 @@
-import 'Product.dart';
+import 'package:project_cartridje_mobile/models/product.dart';
 
 class Cart {
   final Product product;
