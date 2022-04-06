@@ -24,9 +24,6 @@ class AllProducts extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    /*for (Product product in demoProducts) {
-      ProductRepository().addProduct(product: product);
-    }*/
     searchModel.value = _searchController.search;
     _searchController.addListener(() {
       searchModel.value = _searchController.search;
@@ -72,7 +69,6 @@ class AllProducts extends GetxController {
   loadFoundedProducts(SearchModel searchModel) {
     debugPrint(searchModel.toString());
     foundedProducts.value = products.where((element) =>
-        //      (element.title.contains(searchModel.name)) &&
-        (searchModel.categories.contains(element.categoryId))).toList();
+        (element.title.contains(searchModel.name))).toList();
   }
 }

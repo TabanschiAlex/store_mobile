@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
@@ -231,6 +230,7 @@ class ClientController extends GetxController {
 
   addToFavorite(String productId) async {
     List<Favorites> _favoriteList = client!.favouriteModel;
+
     if (!_favoriteList.contains(Favorites(productId: productId))) {
       _favoriteList.add(Favorites(productId: productId));
     }

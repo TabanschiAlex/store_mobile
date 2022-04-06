@@ -40,7 +40,7 @@ class ProductCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Hero(
-                    tag: product.uuid.toString(),
+                    tag: product.id.toString(),
                     child: Image.asset(product.images[0]),
                   ),
                 ),

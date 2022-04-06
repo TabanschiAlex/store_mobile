@@ -49,7 +49,7 @@ class Body extends StatelessWidget {
               ),
               child: FavouriteCard(
                   product: _productController.products.firstWhere((element) =>
-                      element.uuid ==
+                      element.id ==
                       _clientController
                           .client!.favouriteModel[index].productId)),
             ),

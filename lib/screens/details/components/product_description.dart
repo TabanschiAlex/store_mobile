@@ -38,9 +38,9 @@ class ProductDescription extends StatelessWidget {
           child: InkWell(
             onTap: () {
               controller.client!.favouriteModel
-                      .contains(Favorites(productId: product.uuid!))
-                  ? controller.removeFromFavorite(product.uuid!)
-                  : controller.addToFavorite(product.uuid!);
+                      .contains(Favorites(productId: product.id!))
+                  ? controller.removeFromFavorite(product.id!)
+                  : controller.addToFavorite(product.id!);
             },
             child: GetBuilder<ClientController>(
               builder: ((controller) {

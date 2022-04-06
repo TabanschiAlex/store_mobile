@@ -5,7 +5,6 @@ import 'package:project_cartridje_mobile/components/custom_suffix_icon.dart';
 import 'package:project_cartridje_mobile/components/form_error.dart';
 import 'package:project_cartridje_mobile/config/errors_config.dart';
 import 'package:project_cartridje_mobile/config/size_config.dart';
-import 'package:project_cartridje_mobile/controllers/firebase_auth_controller.dart';
 import 'package:project_cartridje_mobile/helper/keyboard.dart';
 import 'package:project_cartridje_mobile/screens/forgot_password/forgot_password_screen.dart';
 import 'package:project_cartridje_mobile/screens/home/home_screen.dart';
@@ -25,8 +24,6 @@ class _SignFormState extends State<SignForm> {
   String? password;
   bool? remember = false;
   final List<String?> errors = [];
-  final FirebaseAuthController _firebaseAuthController =
-      Get.find<FirebaseAuthController>();
 
   void addError({String? error}) {
     if (!errors.contains(error)) {
