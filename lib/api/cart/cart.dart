@@ -36,5 +36,21 @@ class CartApi {
 
   Future<void> updateQuantity() async {}
 
-  Future<void> deleteItem() async {}
+  Future<bool> deleteItem(int id) async {
+    var response = await http.delete(
+      Uri.parse(host + resource),
+      headers: <String, String>{
+        'Authorization': 'Bearer ' + Storage.get('token'),
+      },
+      body: {
+        'id': id.toString()
+      }
+    );
+
+    if (response.statusCode != 200) {
+      throw Exception('Delete error');
+    }
+
+    return true;
+  }
 }

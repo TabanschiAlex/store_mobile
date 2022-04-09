@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project_cartridje_mobile/models/cart.dart';
 
 import 'components/body.dart';
 import 'components/check_out_card.dart';
@@ -27,7 +26,7 @@ class CartScreen extends StatelessWidget {
             style: TextStyle(color: Colors.black),
           ),
           Text(
-            "${demoCarts.length} items",
+            "${0} items", // todo len
             style: Theme.of(context).textTheme.caption,
           ),
         ],
