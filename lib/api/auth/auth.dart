@@ -43,7 +43,26 @@ class AuthApi {
       throw Exception(body['message']);
     }
 
-    print(body);
     return User.fromJson(body);
   }
+
+  Future<bool> forgot(String email) async {
+    final response = await http.post(
+      Uri.parse(host + 'auth/forgot'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'email': email,
+      }),
+    );
+
+
+    if (response.statusCode != 201) {
+      throw Exception('User does not exist!');
+    }
+
+    return true;
+  }
+
 }

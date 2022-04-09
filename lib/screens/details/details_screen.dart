@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:project_cartridje_mobile/models/product.dart';
 
 import 'components/body.dart';
-import 'components/custom_app_bar.dart';
 
 class DetailsScreen extends StatelessWidget {
   static String routeName = "/details";

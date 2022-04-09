@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:project_cartridje_mobile/api/auth/auth.dart';
 import 'package:project_cartridje_mobile/components/custom_suffix_icon.dart';
 import 'package:project_cartridje_mobile/components/default_button.dart';
 import 'package:project_cartridje_mobile/components/form_error.dart';
 import 'package:project_cartridje_mobile/config/errors_config.dart';
 import 'package:project_cartridje_mobile/config/size_config.dart';
+import 'package:project_cartridje_mobile/helper/keyboard.dart';
+import 'package:project_cartridje_mobile/helper/local_storage.dart';
+import 'package:project_cartridje_mobile/screens/login_success/login_success_screen.dart';
 
 
 class SignUpForm extends StatefulWidget {
@@ -18,7 +22,6 @@ class _SignUpFormState extends State<SignUpForm> {
   String? email;
   String? password;
   String? confirmPassword;
-  bool remember = false;
   final List<String?> errors = [];
 
   void addError({String? error}) {
@@ -52,12 +55,17 @@ class _SignUpFormState extends State<SignUpForm> {
           SizedBox(height: getProportionateScreenHeight(40)),
           DefaultButton(
             text: "Continue",
-            press: () {
+            press: () async {
+              KeyboardUtil.hideKeyboard(context);
+
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
-                // if all are valid then go to success screen
-                // Navigator.pushNamed(context, CompleteProfileScreen.routeName);
               }
+
+              final user = await AuthApi().register(email!, password!, confirmPassword!);
+
+              Storage.set('token', user.token);
+              Navigator.pushNamed(context, LoginSuccessScreen.routeName);
             },
           ),
         ],
@@ -90,8 +98,6 @@ class _SignUpFormState extends State<SignUpForm> {
       decoration: const InputDecoration(
         labelText: "Confirm Password",
         hintText: "Re-enter your password",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
-        // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/Lock.svg"),
       ),
@@ -105,7 +111,7 @@ class _SignUpFormState extends State<SignUpForm> {
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: passNullError);
-        } else if (value.length >= 8) {
+        } else if (value.length >= 6) {
           removeError(error: shortPassError);
         }
         password = value;
@@ -114,7 +120,7 @@ class _SignUpFormState extends State<SignUpForm> {
         if (value!.isEmpty) {
           addError(error: passNullError);
           return "";
-        } else if (value.length < 8) {
+        } else if (value.length < 6) {
           addError(error: shortPassError);
           return "";
         }
@@ -123,8 +129,6 @@ class _SignUpFormState extends State<SignUpForm> {
       decoration: const InputDecoration(
         labelText: "Password",
         hintText: "Enter your password",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
-        // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/Lock.svg"),
       ),
@@ -141,7 +145,6 @@ class _SignUpFormState extends State<SignUpForm> {
         } else if (emailValidatorRegExp.hasMatch(value)) {
           removeError(error: invalidEmailError);
         }
-        return null;
       },
       validator: (value) {
         if (value!.isEmpty) {
@@ -151,13 +154,12 @@ class _SignUpFormState extends State<SignUpForm> {
           addError(error: invalidEmailError);
           return "";
         }
+
         return null;
       },
       decoration: const InputDecoration(
         labelText: "Email",
         hintText: "Enter your email",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
-        // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/Mail.svg"),
       ),

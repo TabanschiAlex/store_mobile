@@ -5,6 +5,9 @@ import 'package:project_cartridje_mobile/components/form_error.dart';
 import 'package:project_cartridje_mobile/components/no_account_actions.dart';
 import 'package:project_cartridje_mobile/config/errors_config.dart';
 import 'package:project_cartridje_mobile/config/size_config.dart';
+import 'package:project_cartridje_mobile/screens/sign_in/sign_in_screen.dart';
+
+import '../../../api/auth/auth.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
@@ -33,7 +36,7 @@ class Body extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: SizeConfig.screenHeight * 0.1),
-              ForgotPassForm(),
+              const ForgotPassForm(),
             ],
           ),
         ),
@@ -53,6 +56,7 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
   final _formKey = GlobalKey<FormState>();
   List<String> errors = [];
   String? email;
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -73,7 +77,6 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
                   errors.remove(invalidEmailError);
                 });
               }
-              return null;
             },
             validator: (value) {
               if (value!.isEmpty && !errors.contains(emailNullError)) {
@@ -91,8 +94,6 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
             decoration: const InputDecoration(
               labelText: "Email",
               hintText: "Enter your email",
-              // If  you are using latest version of flutter then lable text and hint text shown like this
-              // if you r using flutter less then 1.20.* then maybe this is not working properly
               floatingLabelBehavior: FloatingLabelBehavior.always,
               suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/Mail.svg"),
             ),
@@ -102,9 +103,15 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
           SizedBox(height: SizeConfig.screenHeight * 0.1),
           DefaultButton(
             text: "Continue",
-            press: () {
+            press: () async {
               if (_formKey.currentState!.validate()) {
-                // Do what you want to do
+                _formKey.currentState!.save();
+              }
+
+              final response = await AuthApi().forgot(email!);
+
+              if (response) {
+                Navigator.pushNamed(context, SignInScreen.routeName);
               }
             },
           ),

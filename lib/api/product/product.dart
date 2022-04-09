@@ -5,7 +5,7 @@ import 'package:project_cartridje_mobile/api/api.dart';
 import 'package:project_cartridje_mobile/models/product.dart';
 
 class ProductApi {
-  static const resource = 'products/';
+  static const resource = 'products';
 
   Future<List<Product>> get() async {
     var response = await http.get(Uri.parse(host + resource));

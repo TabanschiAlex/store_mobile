@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:project_cartridje_mobile/config/colors_config.dart';
 import 'package:project_cartridje_mobile/enums/menu_state_enum.dart';
+import 'package:project_cartridje_mobile/helper/local_storage.dart';
 import 'package:project_cartridje_mobile/screens/home/home_screen.dart';
-import 'package:project_cartridje_mobile/screens/profile/profile_screen.dart';
+import 'package:project_cartridje_mobile/screens/sign_in/sign_in_screen.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   const CustomBottomNavBar({
@@ -57,13 +58,15 @@ class CustomBottomNavBar extends StatelessWidget {
               ),
               IconButton(
                 icon: SvgPicture.asset(
-                  "assets/icons/user_icon.svg",
+                  "assets/icons/Logout.svg",
                   color: MenuState.profile == selectedMenu
                       ? primaryColor
                       : inActiveIconColor,
                 ),
-                onPressed: () =>
-                    Navigator.pushNamed(context, ProfileScreen.routeName),
+                onPressed: () {
+                  Storage.set('token', null);
+                  Navigator.pushNamed(context, SignInScreen.routeName);
+                }
               ),
             ],
           )),
