@@ -32,9 +32,30 @@ class CartApi {
     return items;
   }
 
-  Future<void> add() async {}
+  getTotalPrice() async {
+    var response = await http.get(
+      Uri.parse(host + resource),
+      headers: <String, String>{
+        'Authorization': 'Bearer ' + Storage.get('token'),
+      },
+    );
 
-  Future<void> updateQuantity() async {}
+    final body = jsonDecode(response.body);
+
+    if (response.statusCode != 200) {
+      throw Exception(body['message']);
+    }
+
+    return body;
+  }
+
+  Future<void> add() async {
+
+  }
+
+  Future<void> updateQuantity() async {
+
+  }
 
   Future<bool> deleteItem(int id) async {
     var response = await http.delete(

@@ -3,7 +3,10 @@ import 'package:project_cartridje_mobile/components/default_button.dart';
 import 'package:project_cartridje_mobile/config/size_config.dart';
 
 class CheckoutCard extends StatelessWidget {
+  final double price;
+
   const CheckoutCard({
+    required this.price,
     Key? key,
   }) : super(key: key);
 
@@ -38,13 +41,13 @@ class CheckoutCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text.rich(
+                Text.rich(
                   TextSpan(
                     text: "Total:\n",
                     children: [
                       TextSpan(
-                        text: "\$200.68",
-                        style: TextStyle(fontSize: 16, color: Colors.black),
+                        text: "\$$price",
+                        style: const TextStyle(fontSize: 16, color: Colors.black),
                       ),
                     ],
                   ),

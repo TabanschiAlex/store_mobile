@@ -7,13 +7,57 @@ import 'package:project_cartridje_mobile/models/cart.dart';
 import 'cart_card.dart';
 
 class Body extends StatefulWidget {
-  const Body({Key? key}) : super(key: key);
+  final List<Cart> data;
+
+  const Body({Key? key, required this.data}) : super(key: key);
 
   @override
   _BodyState createState() => _BodyState();
 }
 
 class _BodyState extends State<Body> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding:
+      EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+      child: ListView.builder(
+        itemCount: super.widget.data.length,
+        itemBuilder: (context, index) =>
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: Dismissible(
+                key: Key(super.widget.data[index].product.id.toString()),
+                direction: DismissDirection.endToStart,
+                onDismissed: (direction) async {
+                  final response = await CartApi().deleteItem(super.widget.data[index].id);
+
+                  if (response) {
+                    super.widget.data.removeAt(index);
+                  }
+                },
+                background: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFFFE6E6),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Row(
+                    children: [
+                      const Spacer(),
+                      SvgPicture.asset("assets/icons/Trash.svg"),
+                    ],
+                  ),
+                ),
+                child: CartCard(cart: super.widget.data[index]),
+              ),
+            ),
+      )
+    );
+  }
+}
+
+/*class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
        return Padding(
@@ -70,4 +114,4 @@ class _BodyState extends State<Body> {
       ),
     );
   }
-}
+}*/

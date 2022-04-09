@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project_cartridje_mobile/api/cart/cart.dart';
+import 'package:project_cartridje_mobile/models/cart.dart';
 
 import 'components/body.dart';
 import 'components/check_out_card.dart';
@@ -10,27 +12,41 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildAppBar(context),
-      body: const Body(),
-      bottomNavigationBar: const CheckoutCard(),
+    return FutureBuilder(
+      future: CartApi().get(),
+      initialData: const [],
+      builder: (context, snapshot) {
+        List<Cart> data = [];
+        double totalPrice = 0.00;
+
+        if (snapshot.hasData) {
+          data.addAll(snapshot.data as List<Cart>);
+        }
+
+        if (data.isNotEmpty) {
+          totalPrice = data.map((e) => e.numOfItem * e.product.price).reduce((value, element) => value + element);
+        }
+
+        return Scaffold(
+          appBar: buildAppBar(context, data.length),
+          body: Body(data: data),
+          bottomNavigationBar: CheckoutCard(price: totalPrice),
+        );
+      },
     );
   }
 
-  AppBar buildAppBar(BuildContext context) {
+  AppBar buildAppBar(BuildContext context, items) {
     return AppBar(
-      title: Column(
-        children: [
-          const Text(
-            "Your Cart",
-            style: TextStyle(color: Colors.black),
-          ),
-          Text(
-            "${0} items", // todo len
-            style: Theme.of(context).textTheme.caption,
-          ),
-        ],
+        title: Column(children: [
+      const Text(
+        "Your Cart",
+        style: TextStyle(color: Colors.black),
       ),
-    );
+      Text(
+        "$items items",
+        style: Theme.of(context).textTheme.caption,
+      )
+    ]));
   }
 }
