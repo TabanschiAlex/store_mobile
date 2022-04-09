@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_cartridje_mobile/components/default_button.dart';
 import 'package:project_cartridje_mobile/config/size_config.dart';
+import 'package:project_cartridje_mobile/helper/local_storage.dart';
 import 'package:project_cartridje_mobile/screens/home/home_screen.dart';
 
 class Body extends StatelessWidget {
@@ -30,6 +31,7 @@ class Body extends StatelessWidget {
           child: DefaultButton(
             text: "Back to home",
             press: () {
+              print(Storage.get('token'));
               Navigator.pushNamed(context, HomeScreen.routeName);
             },
           ),

@@ -5,6 +5,10 @@ class Cart {
   final int numOfItem;
 
   Cart({required this.product, required this.numOfItem});
+
+  factory Cart.fromJson(Map<String, dynamic> json) {
+    return Cart(product: Product.fromJson(json['product']), numOfItem: json['quantity']);
+  }
 }
 
 // Demo data for our cart

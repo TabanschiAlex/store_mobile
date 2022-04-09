@@ -1,12 +1,27 @@
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:project_cartridje_mobile/api/api.dart';
+import 'package:project_cartridje_mobile/models/product.dart';
 
 class ProductApi {
   static const resource = 'products/';
 
-  Future<void> get() async {
+  Future<List<Product>> get() async {
     var response = await http.get(Uri.parse(host + resource));
 
-    print(response.body);
+    final body = jsonDecode(response.body);
+
+    if (response.statusCode != 200) {
+      throw Exception(body['message']);
+    }
+
+    final List<Product> products = [];
+
+    for (int i = 0; i < response.body.length; i++) {
+      products.add(Product.fromJson(body[i]));
+    }
+
+    return products;
   }
 }

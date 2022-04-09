@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:project_cartridje_mobile/api/cart/cart.dart';
 import 'package:project_cartridje_mobile/config/size_config.dart';
 import 'package:project_cartridje_mobile/models/cart.dart';
 
@@ -13,39 +14,94 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  Future<ListView> createTemplate() async {
+    final data = await CartApi().get();
+
+    return ListView.builder(
+      itemCount: data.length,
+      itemBuilder: (context, index) =>
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: Dismissible(
+              key: Key(data[index].product.id.toString()),
+              direction: DismissDirection.endToStart,
+              onDismissed: (direction) {
+                setState(() {
+                  data.removeAt(index);
+                });
+              },
+              background: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFFFE6E6),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Row(
+                  children: [
+                    const Spacer(),
+                    SvgPicture.asset("assets/icons/Trash.svg"),
+                  ],
+                ),
+              ),
+              child: CartCard(cart: data[index]),
+            ),
+          ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
+       return Padding(
       padding:
-          EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
-      child: ListView.builder(
-        itemCount: demoCarts.length,
-        itemBuilder: (context, index) => Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          child: Dismissible(
-            key: Key(demoCarts[index].product.id.toString()),
-            direction: DismissDirection.endToStart,
-            onDismissed: (direction) {
-              setState(() {
-                demoCarts.removeAt(index);
-              });
-            },
-            background: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              decoration: BoxDecoration(
-                color: const Color(0xFFFFE6E6),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Row(
-                children: [
-                  const Spacer(),
-                  SvgPicture.asset("assets/icons/Trash.svg"),
-                ],
-              ),
-            ),
-            child: CartCard(cart: demoCarts[index]),
-          ),
-        ),
+      EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+      child: FutureBuilder(
+        future: CartApi().get(),
+        initialData: const [],
+        builder: (context, snapshot) {
+          List<Cart> data = [];
+          ListView builder;
+
+          if (snapshot.hasData) {
+             data.addAll(snapshot.data as List<Cart>);
+
+             print('11111111111111111111111111111111111111111111//' + data.length.toString());
+
+             builder = ListView.builder(
+               itemCount: data.length,
+               itemBuilder: (context, index) =>
+                   Padding(
+                     padding: const EdgeInsets.symmetric(vertical: 10),
+                     child: Dismissible(
+                       key: Key(data[index].product.id.toString()),
+                       direction: DismissDirection.endToStart,
+                       onDismissed: (direction) {
+                         setState(() {
+                           data.removeAt(index);
+                         });
+                       },
+                       background: Container(
+                         padding: const EdgeInsets.symmetric(horizontal: 20),
+                         decoration: BoxDecoration(
+                           color: const Color(0xFFFFE6E6),
+                           borderRadius: BorderRadius.circular(15),
+                         ),
+                         child: Row(
+                           children: [
+                             const Spacer(),
+                             SvgPicture.asset("assets/icons/Trash.svg"),
+                           ],
+                         ),
+                       ),
+                       child: CartCard(cart: data[index]),
+                     ),
+                   ),
+             );
+          } else {
+            builder = ListView();
+          }
+
+          return builder;
+        },
       ),
     );
   }

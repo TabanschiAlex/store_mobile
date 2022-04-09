@@ -1,27 +1,29 @@
-import 'package:flutter/material.dart';
-
 class Product {
   final int id;
   final String title, description;
-  final List<String> images;
-  final List<Color> colors;
-  final double rating, price;
+  final List<dynamic> images;
+  final double price;
   final bool isFavourite, isPopular;
 
   Product({
     required this.id,
     required this.images,
-    required this.colors,
-    this.rating = 0.0,
     this.isFavourite = false,
-    this.isPopular = false,
+    this.isPopular = true,
     required this.title,
     required this.price,
     required this.description,
   });
+
+  factory Product.fromJson(Map<String, dynamic> json) {
+    return Product(
+        id: int.parse(json['id']),
+        images: json['images'] ?? [],
+        title: json['title'],
+        price: double.parse(json['price']),
+        description: json['description']);
+  }
 }
-
-
 
 // Our demo Products
 
@@ -34,16 +36,9 @@ List<Product> demoProducts = [
       "assets/images/popular_products/ps4_console_white_3.png",
       "assets/images/popular_products/ps4_console_white_4.png",
     ],
-    colors: [
-      const Color(0xFFF6625E),
-      const Color(0xFF836DB8),
-      const Color(0xFFDECB9C),
-      Colors.white,
-    ],
     title: "Wireless Controller for PS4™",
     price: 64.99,
     description: description,
-    rating: 4.8,
     isFavourite: true,
     isPopular: true,
   ),
@@ -52,16 +47,9 @@ List<Product> demoProducts = [
     images: [
       "assets/images/Image Popular Product 2.png",
     ],
-    colors: [
-      const Color(0xFFF6625E),
-      const Color(0xFF836DB8),
-      const Color(0xFFDECB9C),
-      Colors.white,
-    ],
     title: "Nike Sport White - Man Pant",
     price: 50.5,
     description: description,
-    rating: 4.1,
     isPopular: true,
   ),
   Product(
@@ -69,16 +57,9 @@ List<Product> demoProducts = [
     images: [
       "assets/images/glap.png",
     ],
-    colors: [
-      const Color(0xFFF6625E),
-      const Color(0xFF836DB8),
-      const Color(0xFFDECB9C),
-      Colors.white,
-    ],
     title: "Gloves XC Omega - Polygon",
     price: 36.55,
     description: description,
-    rating: 4.1,
     isFavourite: true,
     isPopular: true,
   ),
@@ -87,16 +68,9 @@ List<Product> demoProducts = [
     images: [
       "assets/images/wireless headset.png",
     ],
-    colors: [
-      const Color(0xFFF6625E),
-      const Color(0xFF836DB8),
-      const Color(0xFFDECB9C),
-      Colors.white,
-    ],
     title: "Logitech Head",
     price: 20.20,
     description: description,
-    rating: 4.1,
     isFavourite: true,
   ),
 ];
