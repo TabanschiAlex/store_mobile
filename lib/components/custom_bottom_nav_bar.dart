@@ -5,15 +5,16 @@ import 'package:project_cartridje_mobile/enums/menu_state_enum.dart';
 import 'package:project_cartridje_mobile/helper/local_storage.dart';
 import 'package:project_cartridje_mobile/screens/favourite/favourites_screen.dart';
 import 'package:project_cartridje_mobile/screens/home/home_screen.dart';
+import 'package:project_cartridje_mobile/screens/orders/orders_screen.dart';
 import 'package:project_cartridje_mobile/screens/sign_in/sign_in_screen.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
+  final MenuState selectedMenu;
+
   const CustomBottomNavBar({
     Key? key,
     required this.selectedMenu,
   }) : super(key: key);
-
-  final MenuState selectedMenu;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +60,12 @@ class CustomBottomNavBar extends StatelessWidget {
               ),
               IconButton(
                 icon: SvgPicture.asset("assets/icons/chat_bubble_icon.svg"),
-                onPressed: () {},
+                color: MenuState.orders == selectedMenu
+                    ? primaryColor
+                    : inActiveIconColor,
+                onPressed: () {
+                  Navigator.pushNamed(context, OrdersScreen.routeName);
+                },
               ),
               IconButton(
                   icon: SvgPicture.asset(

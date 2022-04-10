@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:project_cartridje_mobile/api/favourite/favourite.dart';
+import 'package:project_cartridje_mobile/api/order.dart';
 import 'package:project_cartridje_mobile/components/custom_bottom_nav_bar.dart';
 import 'package:project_cartridje_mobile/enums/menu_state_enum.dart';
-import 'package:project_cartridje_mobile/models/product.dart';
+import 'package:project_cartridje_mobile/models/order.dart';
 
 import 'components/body.dart';
 
-class FavouritesScreen extends StatelessWidget {
-  static String routeName = "/favourite";
+class OrdersScreen extends StatelessWidget {
+  static String routeName = "/orders";
 
-  const FavouritesScreen({Key? key}) : super(key: key);
+  const OrdersScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: FavouriteApi().get(),
+      future: OrderApi().get(),
       builder: (context, snapshot) {
-        List<Product> favourites = [];
+        List<Order> orders = [];
 
         if (snapshot.hasData) {
-          favourites.addAll(snapshot.data as List<Product>);
+          orders.addAll(snapshot.data as List<Order>);
         }
 
         return Scaffold(
-          appBar: buildAppBar(context, favourites.length),
-          body: Body(favourites: favourites),
+          appBar: buildAppBar(context, orders.length),
+          body: Body(favourites: orders),
           bottomNavigationBar:
-          CustomBottomNavBar(selectedMenu: MenuState.favourite),
+          const CustomBottomNavBar(selectedMenu: MenuState.orders),
         );
       },
     );
@@ -37,7 +37,7 @@ class FavouritesScreen extends StatelessWidget {
       title: Column(
         children: [
           const Text(
-            "Favourites",
+            "Orders",
             style: TextStyle(color: Colors.black),
           ),
           Text(
