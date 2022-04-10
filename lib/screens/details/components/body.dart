@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_cartridje_mobile/api/cart/cart.dart';
 import 'package:project_cartridje_mobile/components/default_button.dart';
 import 'package:project_cartridje_mobile/config/size_config.dart';
 import 'package:project_cartridje_mobile/models/product.dart';
@@ -35,7 +36,9 @@ class Body extends StatelessWidget {
                 ),
                 child: DefaultButton(
                   text: "Add To Cart",
-                  press: () {},
+                  press: () async {
+                    await CartApi().add(product.id, 1);
+                  },
                 ),
               ),
 

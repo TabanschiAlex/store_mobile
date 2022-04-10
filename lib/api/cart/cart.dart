@@ -49,8 +49,23 @@ class CartApi {
     return body;
   }
 
-  Future<void> add() async {
+  Future<bool> add(int id, int quantity) async {
+    var response = await http.post(
+        Uri.parse(host + resource),
+        headers: <String, String>{
+          'Authorization': 'Bearer ' + Storage.get('token'),
+        },
+        body: {
+          'product_id': id.toString(),
+          'quantity': quantity.toString()
+        }
+    );
 
+    if (response.statusCode != 201) {
+      throw Exception('Error');
+    }
+
+    return true;
   }
 
   Future<void> updateQuantity() async {

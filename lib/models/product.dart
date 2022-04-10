@@ -39,7 +39,7 @@ List<Product> demoProducts = [
     title: "Wireless Controller for PS4™",
     price: 64.99,
     description: description,
-    isFavourite: true,
+    isFavourite: false,
     isPopular: true,
   ),
   Product(

@@ -18,7 +18,7 @@ class ProductApi {
 
     final List<Product> products = [];
 
-    for (int i = 0; i < response.body.length; i++) {
+    for (int i = 0; i < body.length; i++) {
       products.add(Product.fromJson(body[i]));
     }
 

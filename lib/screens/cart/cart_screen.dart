@@ -14,7 +14,6 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: CartApi().get(),
-      initialData: const [],
       builder: (context, snapshot) {
         List<Cart> data = [];
         double totalPrice = 0.00;
