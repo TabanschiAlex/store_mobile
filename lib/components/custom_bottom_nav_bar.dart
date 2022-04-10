@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:project_cartridje_mobile/config/colors_config.dart';
 import 'package:project_cartridje_mobile/enums/menu_state_enum.dart';
 import 'package:project_cartridje_mobile/helper/local_storage.dart';
+import 'package:project_cartridje_mobile/screens/favourite/favourites_screen.dart';
 import 'package:project_cartridje_mobile/screens/home/home_screen.dart';
 import 'package:project_cartridje_mobile/screens/sign_in/sign_in_screen.dart';
 
@@ -50,24 +51,27 @@ class CustomBottomNavBar extends StatelessWidget {
               ),
               IconButton(
                 icon: SvgPicture.asset("assets/icons/heart_icon.svg"),
-                onPressed: () {},
+                color: MenuState.favourite == selectedMenu
+                    ? primaryColor
+                    : inActiveIconColor,
+                onPressed: () =>
+                    Navigator.pushNamed(context, FavouritesScreen.routeName),
               ),
               IconButton(
                 icon: SvgPicture.asset("assets/icons/chat_bubble_icon.svg"),
                 onPressed: () {},
               ),
               IconButton(
-                icon: SvgPicture.asset(
-                  "assets/icons/Logout.svg",
-                  color: MenuState.profile == selectedMenu
-                      ? primaryColor
-                      : inActiveIconColor,
-                ),
-                onPressed: () {
-                  Storage.set('token', null);
-                  Navigator.pushNamed(context, SignInScreen.routeName);
-                }
-              ),
+                  icon: SvgPicture.asset(
+                    "assets/icons/Logout.svg",
+                    color: MenuState.profile == selectedMenu
+                        ? primaryColor
+                        : inActiveIconColor,
+                  ),
+                  onPressed: () {
+                    Storage.set('token', null);
+                    Navigator.pushNamed(context, SignInScreen.routeName);
+                  }),
             ],
           )),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:project_cartridje_mobile/screens/cart/cart_screen.dart';
 import 'package:project_cartridje_mobile/screens/details/details_screen.dart';
+import 'package:project_cartridje_mobile/screens/favourite/favourites_screen.dart';
 import 'package:project_cartridje_mobile/screens/forgot_password/forgot_password_screen.dart';
 import 'package:project_cartridje_mobile/screens/home/home_screen.dart';
 import 'package:project_cartridje_mobile/screens/login_success/login_success_screen.dart';
@@ -17,4 +18,5 @@ final Map<String, WidgetBuilder> routes = {
   HomeScreen.routeName: (context) => const HomeScreen(),
   DetailsScreen.routeName: (context) => const DetailsScreen(),
   CartScreen.routeName: (context) => const CartScreen(),
+  FavouritesScreen.routeName: (context) =>  const FavouritesScreen(),
 };
