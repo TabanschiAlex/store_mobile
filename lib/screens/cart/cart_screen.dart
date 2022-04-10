@@ -16,20 +16,15 @@ class CartScreen extends StatelessWidget {
       future: CartApi().get(),
       builder: (context, snapshot) {
         List<Cart> data = [];
-        double totalPrice = 0.00;
 
         if (snapshot.hasData) {
           data.addAll(snapshot.data as List<Cart>);
         }
 
-        if (data.isNotEmpty) {
-          totalPrice = data.map((e) => e.numOfItem * e.product.price).reduce((value, element) => value + element);
-        }
-
         return Scaffold(
           appBar: buildAppBar(context, data.length),
           body: Body(data: data),
-          bottomNavigationBar: CheckoutCard(price: totalPrice),
+          bottomNavigationBar: CheckoutCard(data: data),
         );
       },
     );

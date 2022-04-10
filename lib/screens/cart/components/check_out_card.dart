@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:project_cartridje_mobile/api/order.dart';
 import 'package:project_cartridje_mobile/components/default_button.dart';
 import 'package:project_cartridje_mobile/config/size_config.dart';
+import 'package:project_cartridje_mobile/models/cart.dart';
 
 class CheckoutCard extends StatelessWidget {
-  final double price;
+  final List<Cart> data ;
 
   const CheckoutCard({
-    required this.price,
+    required this.data,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    double price = 0.00;
+
+    if (data.isNotEmpty) {
+      price = data.map((e) => e.numOfItem * e.product.price).reduce((value, element) => value + element);
+    }
+
     return Container(
       padding: EdgeInsets.symmetric(
         vertical: getProportionateScreenWidth(15),
@@ -56,7 +64,9 @@ class CheckoutCard extends StatelessWidget {
                   width: getProportionateScreenWidth(190),
                   child: DefaultButton(
                     text: "Check Out",
-                    press: () {},
+                    press: () async {
+                      await OrderApi().create(data);
+                    },
                   ),
                 ),
               ],
