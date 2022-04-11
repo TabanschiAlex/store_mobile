@@ -19,14 +19,14 @@ class OrderCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                order.id.toString(),
+                "Order №${order.id}",
                 style: const TextStyle(color: Colors.black, fontSize: 16),
                 maxLines: 2,
               ),
               const SizedBox(height: 10),
               Text.rich(
                 TextSpan(
-                  text: "\$${order.totalPrice}",
+                  text: "Total price: \$${order.totalPrice}",
                   style: const TextStyle(
                       fontWeight: FontWeight.w600, color: primaryColor),
                 ),

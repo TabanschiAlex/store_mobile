@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:project_cartridje_mobile/api/favourite/favourite.dart';
 import 'package:project_cartridje_mobile/components/info_snackbar.dart';
 import 'package:project_cartridje_mobile/config/size_config.dart';
 import 'package:project_cartridje_mobile/models/product.dart';
@@ -24,8 +25,13 @@ class Body extends StatelessWidget {
               key: Key(favourites[index].toString()),
               direction: DismissDirection.endToStart,
               onDismissed: (direction) async {
-                InfoSnackBar().infoSnackBar('Remove from Favourite!',
-                    'Removed ${favourites[index].title}');
+                final response = await FavouriteApi().remove(favourites[index].id);
+
+                if (response) {
+                  favourites.removeAt(index);
+                  InfoSnackBar().infoSnackBar('Remove from Favourite!',
+                      'Removed ${favourites[index]}');
+                }
               },
               background: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20),

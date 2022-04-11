@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:project_cartridje_mobile/api/favourite/favourite.dart';
 import 'package:project_cartridje_mobile/config/colors_config.dart';
 import 'package:project_cartridje_mobile/config/size_config.dart';
 import 'package:project_cartridje_mobile/models/product.dart';
@@ -64,7 +65,14 @@ class ProductCard extends StatelessWidget {
                   ),
                   InkWell(
                     borderRadius: BorderRadius.circular(50),
-                    onTap: () {},
+                    onTap: () async {
+                      final response = await FavouriteApi()
+                          .change(product.isFavourite, product.id);
+
+                      if (response) {
+                        product.isFavourite = !product.isFavourite;
+                      }
+                    },
                     child: Container(
                       padding: EdgeInsets.all(getProportionateScreenWidth(8)),
                       height: getProportionateScreenWidth(28),

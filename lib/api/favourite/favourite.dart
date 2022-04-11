@@ -48,14 +48,14 @@ class FavouriteApi {
     return true;
   }
 
-  Future<bool> remove(int id) async {
+  Future<bool> remove(int productId) async {
     var response = await http.delete(
-      Uri.parse(host + 'auth/login'),
+      Uri.parse(host + resource),
       headers: <String, String>{
         'Authorization': 'Bearer ' + Storage.get('token'),
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(<String, String>{'id': id.toString()}),
+      body: jsonEncode(<String, int>{'product_id': productId}),
     );
 
     if (response.statusCode != 200) {
@@ -63,5 +63,13 @@ class FavouriteApi {
     }
 
     return true;
+  }
+
+  Future<bool> change(bool status, int id) async {
+    if (status) {
+      return await remove(id);
+    }
+
+    return await add(id);
   }
 }

@@ -3,7 +3,8 @@ class Product {
   final String title, description;
   final List<dynamic> images;
   final double price;
-  final bool isFavourite, isPopular;
+  bool isFavourite;
+  final bool isPopular;
 
   Product({
     required this.id,
