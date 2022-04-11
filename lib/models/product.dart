@@ -21,7 +21,8 @@ class Product {
         images: json['images'] ?? [],
         title: json['title'],
         price: double.parse(json['price']),
-        description: json['description']);
+        description: json['description'],
+        isFavourite: json['isFavourite'] == 1);
   }
 }
 
