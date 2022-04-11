@@ -1,6 +1,6 @@
-# project_cartridje_mobile
+# store_mobile
 
-Project cartridje mobile with Flutter
+Project store mobile with Flutter
 
 ## Getting Started
 
