@@ -39,6 +39,7 @@ dependencies:
   http: any
   localstorage: any
   get: any
+  another_flushbar: any
 
 dev_dependencies:
   flutter_test:

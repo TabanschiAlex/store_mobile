@@ -3,6 +3,7 @@ import 'package:project_cartridje_mobile/api/order.dart';
 import 'package:project_cartridje_mobile/components/default_button.dart';
 import 'package:project_cartridje_mobile/config/size_config.dart';
 import 'package:project_cartridje_mobile/models/cart.dart';
+import 'package:project_cartridje_mobile/screens/orders/orders_screen.dart';
 
 class CheckoutCard extends StatelessWidget {
   final List<Cart> data ;
@@ -65,7 +66,12 @@ class CheckoutCard extends StatelessWidget {
                   child: DefaultButton(
                     text: "Check Out",
                     press: () async {
-                      await OrderApi().create(data);
+                      final response = await OrderApi().create(data);
+
+                      if (response) {
+                        data.removeRange(0, data.length - 1);
+                        Navigator.pushNamed(context, OrdersScreen.routeName);
+                      }
                     },
                   ),
                 ),
