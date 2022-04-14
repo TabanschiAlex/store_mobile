@@ -41,7 +41,7 @@ class FavouriteApi {
       body: jsonEncode(<String, int>{'product_id': productId}),
     );
 
-    if (response.statusCode != 200) {
+    if (response.statusCode != 201) {
       throw Exception(response.body);
     }
 

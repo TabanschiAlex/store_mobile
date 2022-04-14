@@ -6,7 +6,10 @@ import 'package:project_cartridje_mobile/config/size_config.dart';
 import 'package:project_cartridje_mobile/models/product.dart';
 import 'package:project_cartridje_mobile/screens/details/details_screen.dart';
 
-class ProductCard extends StatelessWidget {
+class ProductCard extends StatefulWidget {
+  final double width, aspectRatio;
+  final Product product;
+
   const ProductCard({
     Key? key,
     this.width = 140,
@@ -14,8 +17,22 @@ class ProductCard extends StatelessWidget {
     required this.product,
   }) : super(key: key);
 
-  final double width, aspectRatio;
-  final Product product;
+  @override
+  _ProductCardWidgetState createState() =>
+      _ProductCardWidgetState(width, aspectRatio, product);
+}
+
+class _ProductCardWidgetState extends State<ProductCard> {
+  double width, aspectRatio;
+  Product product;
+
+  _ProductCardWidgetState(this.width, this.aspectRatio, this.product);
+
+  void _toggleFavorite() {
+    setState(() {
+      product.isFavourite = product.isFavourite ? false : true;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +87,7 @@ class ProductCard extends StatelessWidget {
                           .change(product.isFavourite, product.id);
 
                       if (response) {
-                        product.isFavourite = !product.isFavourite;
+                        _toggleFavorite();
                       }
                     },
                     child: Container(

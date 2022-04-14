@@ -35,15 +35,11 @@ class FavouritesScreen extends StatelessWidget {
   AppBar buildAppBar(BuildContext context, int items) {
     return AppBar(
       title: Column(
-        children: [
-          const Text(
+        children: const [
+          Text(
             "Favourites",
             style: TextStyle(color: Colors.black),
           ),
-          Text(
-            "$items Items",
-            style: Theme.of(context).textTheme.caption,
-          )
         ],
       ),
     );

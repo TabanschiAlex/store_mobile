@@ -26,7 +26,6 @@ class CartApi {
 
     for (int i = 0; i < body.length; i++) {
       items.add(Cart.fromJson(body[i]));
-      print(body[i]);
     }
 
     return items;
